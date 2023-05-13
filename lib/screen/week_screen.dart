@@ -1,28 +1,16 @@
+import 'package:active_week/list/days.dart';
+import 'package:active_week/widgets/day_item.dart';
 import 'package:flutter/material.dart';
+import './day_activities_screen.dart';
 
 //Visible main menu with view of days in week
 class WeekScreen extends StatelessWidget {
   const WeekScreen({super.key});
 
-  Widget buildDayColumn(BuildContext context, String title) {
-    return Column(
-      children: [
-        Flexible(
-          child: Container(
-            height: 200,
-            width: 90,
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.all(10),
-            alignment: Alignment.topCenter,
-            child: Text(title),
-            decoration: BoxDecoration(
-              border: Border.all(color: Theme.of(context).primaryColor),
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
-      ],
-    );
+  void _selectDay(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) =>
+            DayActivitiesScreen(title: 'Title', activities: [])));
   }
 
   @override
@@ -38,13 +26,12 @@ class WeekScreen extends StatelessWidget {
                 crossAxisSpacing: 1,
                 mainAxisSpacing: 1),
             children: [
-              buildDayColumn(context, 'Monday'),
-              buildDayColumn(context, 'Tuesday'),
-              buildDayColumn(context, 'Wenesday'),
-              buildDayColumn(context, 'Thursday'),
-              buildDayColumn(context, 'Friday'),
-              buildDayColumn(context, 'Saturday'),
-              buildDayColumn(context, 'Sunday'),
+              for (final day in days)
+                DayItem(
+                    day: day,
+                    onSelectDay: () {
+                      _selectDay(context);
+                    })
             ]));
   }
 }
