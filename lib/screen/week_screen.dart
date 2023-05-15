@@ -1,4 +1,5 @@
-import 'package:active_week/list/days.dart';
+import 'package:active_week/list/days_list.dart';
+import 'package:active_week/model/activity.dart';
 import 'package:active_week/widgets/day_item.dart';
 import 'package:flutter/material.dart';
 import './day_activities_screen.dart';
@@ -9,7 +10,9 @@ class WeekScreen extends StatelessWidget {
 
   void _selectDay(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => DayActivitiesScreen(activities: [])));
+        builder: (context) => DayActivitiesScreen(activities: [
+              Activity('a1', 'Programming', days.first, Category.learning)
+            ])));
   }
 
   @override

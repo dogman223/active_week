@@ -37,7 +37,7 @@ class DayItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: onSelectDay,
+        onTap: (onSelectDay),
         child: Container(
           child: buildDayColumn(context, day),
         ));
