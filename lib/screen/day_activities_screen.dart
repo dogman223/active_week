@@ -1,4 +1,3 @@
-import 'package:active_week/list/days_list.dart';
 import 'package:flutter/material.dart';
 
 import '../model/activity.dart';
@@ -7,9 +6,7 @@ import '../model/activity.dart';
 class DayActivitiesScreen extends StatelessWidget {
   DayActivitiesScreen({super.key, required this.activities});
 
-  List<Activity> activities = [
-    Activity('a1', 'Programming', days.first, Category.learning)
-  ];
+  List<Activity> activities;
 
   //Widget builds list of activities if not empty
   Widget buildListContent(BuildContext context) {
@@ -31,6 +28,13 @@ class DayActivitiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Hej')), body: buildListContent(context));
+      appBar: AppBar(title: Text('Hej')),
+      body: buildListContent(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => {},
+      ),
+    );
   }
 }
