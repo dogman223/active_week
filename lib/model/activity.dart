@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class Activity {
-  String id;
-  String title;
-  String type;
-  Icon icon;
-  var day;
+import './day.dart';
 
-  Activity(this.id, @required this.title, @required this.type,
-      @required this.icon, @required this.day);
+enum Category {
+  sport,
+  meal,
+  entertainment,
+  learning,
+  travel,
+  rest,
+  spirituality,
+  hobby,
+  social,
+  family,
+  work
+}
+
+class Activity {
+  final String id;
+  final String title;
+  final Day day;
+
+  Activity(this.id, @required this.title, @required this.day);
 }
