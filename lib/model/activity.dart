@@ -14,7 +14,8 @@ enum Category {
   hobby,
   social,
   family,
-  work
+  friends,
+  work,
 }
 
 class Activity {
