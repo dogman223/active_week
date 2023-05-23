@@ -19,11 +19,9 @@ enum Category {
 }
 
 class Activity {
-  final String id;
   final String title;
   final Day day;
   final Category category;
 
-  Activity(this.id, @required this.title, @required this.day,
-      @required this.category);
+  Activity(@required this.title, @required this.day, @required this.category);
 }

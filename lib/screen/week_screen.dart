@@ -15,10 +15,9 @@ class WeekScreen extends StatelessWidget {
     BuildContext context,
   ) {
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => DayActivitiesScreen(activities: [
-              Activity('a1', 'Programming', days.first, Category.learning),
-              Activity('a2', 'Gaming', days.first, Category.entertainment)
-            ])));
+        builder: (context) => DayActivitiesScreen(
+              activities: [],
+            )));
   }
 
   @override

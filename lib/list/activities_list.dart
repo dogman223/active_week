@@ -8,7 +8,7 @@ class ActivitiesList extends StatelessWidget {
   ActivitiesList({super.key, required this.activities});
 
   List<Activity> activities = [
-    Activity('a1', 'Programming', days.first, Category.learning)
+    Activity('Programming', days.first, Category.learning)
   ];
 
   @override

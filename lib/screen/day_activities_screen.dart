@@ -4,28 +4,35 @@ import '../model/activity.dart';
 import '../widgets/new_activity.dart';
 
 //Screen of activities in a day
-class DayActivitiesScreen extends StatelessWidget {
+class DayActivitiesScreen extends StatefulWidget {
   DayActivitiesScreen({super.key, required this.activities});
 
   List<Activity> activities;
 
-  void _addNewActivity() {}
+  @override
+  State<DayActivitiesScreen> createState() => _DayActivitiesScreenState();
+}
 
+class _DayActivitiesScreenState extends State<DayActivitiesScreen> {
   void _openAddActivityOverlay(BuildContext context) {
     showModalBottomSheet(
         context: context,
-        builder: (_) {
-          return const NewActivity();
-        });
+        builder: (contex) => NewActivity(onAddActivity: _addActivity));
+  }
+
+  void _addActivity(Activity activity) {
+    setState(() {
+      widget.activities.add(activity);
+    });
   }
 
   //Widget builds list of activities if not empty
   Widget buildListContent(BuildContext context) {
     Widget listContent = ListView.builder(
-        itemCount: activities.length,
-        itemBuilder: (context, index) => Text(activities[index].title));
+        itemCount: widget.activities.length,
+        itemBuilder: (context, index) => Text(widget.activities[index].title));
 
-    if (activities.isEmpty) {
+    if (widget.activities.isEmpty) {
       listContent = const Center(
           child: Text(
         'No Activities today yet!',
