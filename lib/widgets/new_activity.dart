@@ -38,7 +38,7 @@ class _NewActivityState extends State<NewActivity> {
               ));
       return;
     }
-
+    //if(_selectedDay == days.where((element) => false)){}
     widget.onAddActivity(
         Activity(_titleController.text, _selectedDay, _selectedCategory));
   }
