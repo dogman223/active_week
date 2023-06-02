@@ -46,7 +46,7 @@ class _WenesdayScreenState extends State<WenesdayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Day')),
+      appBar: AppBar(title: Text('Wenesday')),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

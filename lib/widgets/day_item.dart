@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '/screen/day_activities_screen.dart';
+import '/day_screen/monday.dart';
 import '../model/day.dart';
 
 //Grid of day

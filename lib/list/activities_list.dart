@@ -7,9 +7,7 @@ import 'days_list.dart';
 class ActivitiesList extends StatelessWidget {
   ActivitiesList({super.key, required this.activities});
 
-  List<Activity> activities = [
-    Activity('Programming', days.first, Category.learning)
-  ];
+  List<Activity> activities = [];
 
   @override
   Widget build(BuildContext context) {

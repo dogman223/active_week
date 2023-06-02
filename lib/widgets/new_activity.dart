@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 import '../list/days_list.dart';
 import '../model/activity.dart';
@@ -8,6 +12,7 @@ import '../model/day.dart';
 class NewActivity extends StatefulWidget {
   const NewActivity({super.key, required this.onAddActivity});
 
+  //Add Activity Function
   final void Function(Activity activity) onAddActivity;
 
   @override
@@ -19,26 +24,17 @@ class _NewActivityState extends State<NewActivity> {
   Category _selectedCategory = Category.family;
   Day _selectedDay = days.first;
 
-  //Method save New Activity and adds it to list of day activities.
+  //Method save input of New Activity and adds it to list of day activities.
+  //Uses onAddActivity Function.
   //Shows error if input is invalid.
   void _submitActivityData() {
-    if (_titleController.text.trim().isEmpty) {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text('Invalid input'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Okay'),
-                  ),
-                ],
-              ));
-      return;
-    }
-    //if(_selectedDay == days.where((element) => false)){}
+    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
+        'activities-list.json');
+    http.post(url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'title': _titleController.text,
+        }));
     widget.onAddActivity(
         Activity(_titleController.text, _selectedDay, _selectedCategory));
   }
