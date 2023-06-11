@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:active_week/list/days_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
 import '../widgets/new_activity.dart';
 
@@ -51,7 +51,6 @@ class _MondayScreenState extends State<MondayScreen> {
   void _addActivity(Activity activity) async {
     setState(() {
       widget.activities.add(activity);
-      _loadActivities();
     });
   }
 
