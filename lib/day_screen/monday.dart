@@ -8,7 +8,7 @@ import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
 import '../widgets/new_activity.dart';
 
-//Screen of activities in a day
+//Screen of activities on Monday
 class MondayScreen extends StatefulWidget {
   MondayScreen({super.key, required this.activities});
 
@@ -25,7 +25,7 @@ class _MondayScreenState extends State<MondayScreen> {
     _loadActivities();
   }
 
-  //Method loads data from data base.
+  //Method loads list of data from data base.
   void _loadActivities() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
@@ -61,11 +61,35 @@ class _MondayScreenState extends State<MondayScreen> {
   //});
   //}
 
-  //Widget builds list of activities if not empty
+  //Widget builds list of data(activities) if not empty.
+  //Contains styling of list.
   Widget buildListContent(BuildContext context) {
     Widget listContent = ListView.builder(
-        itemCount: widget.activities.length,
-        itemBuilder: (context, index) => Text(widget.activities[index].title));
+      padding: const EdgeInsets.all(10),
+      itemCount: widget.activities.length,
+      itemBuilder: (context, index) {
+        return SizedBox(
+          height: 40,
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(), borderRadius: BorderRadius.circular(30)),
+            margin: const EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
+            child: FittedBox(
+              child: Text(
+                widget.activities[index].title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    color: Theme.of(context).primaryColor),
+              ),
+            ),
+          ),
+        );
+      },
+    );
 
     if (widget.activities.isEmpty) {
       listContent = const Center(
@@ -81,7 +105,10 @@ class _MondayScreenState extends State<MondayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Monday')),
+      appBar: AppBar(
+          title: const Text(
+        'Monday',
+      )),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
