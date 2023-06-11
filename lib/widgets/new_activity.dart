@@ -24,17 +24,23 @@ class _NewActivityState extends State<NewActivity> {
   Category _selectedCategory = Category.family;
   Day _selectedDay = days.first;
 
-  //Method save input of New Activity and adds it to list of day activities.
+  //Method save input of New Activity and adds it to data base.
+  //Post method included.
   //Uses onAddActivity Function.
   //Shows error if input is invalid.
-  void _submitActivityData() {
+  void _submitActivityData() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
-    http.post(url,
+    await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'title': _titleController.text,
         }));
+
+    if (!context.mounted) {
+      return;
+    }
+
     widget.onAddActivity(
         Activity(_titleController.text, _selectedDay, _selectedCategory));
   }
@@ -92,6 +98,7 @@ class _NewActivityState extends State<NewActivity> {
                 }),
           ],
         ),
+        //'Save Activity' button
         Row(
           children: [
             ElevatedButton(
@@ -101,6 +108,7 @@ class _NewActivityState extends State<NewActivity> {
                 child: const Text('Save Activity')),
           ],
         ),
+        //'Add Activity' button
         Row(
           children: [
             ElevatedButton(
