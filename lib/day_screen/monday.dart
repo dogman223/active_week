@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:active_week/model/day.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -7,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
 import '../widgets/new_activity.dart';
+import '../widgets/activity_item.dart';
 
 //Screen of activities on Monday
 class MondayScreen extends StatefulWidget {
@@ -62,32 +64,12 @@ class _MondayScreenState extends State<MondayScreen> {
   //}
 
   //Widget builds list of data(activities) if not empty.
-  //Contains styling of list.
   Widget buildListContent(BuildContext context) {
     Widget listContent = ListView.builder(
       padding: const EdgeInsets.all(10),
       itemCount: widget.activities.length,
       itemBuilder: (context, index) {
-        return SizedBox(
-          height: 40,
-          child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(), borderRadius: BorderRadius.circular(30)),
-            margin: const EdgeInsets.all(5),
-            padding: const EdgeInsets.all(5),
-            child: FittedBox(
-              child: Text(
-                widget.activities[index].title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                    color: Theme.of(context).primaryColor),
-              ),
-            ),
-          ),
-        );
+        return ActivityItem(activity: widget.activities[index]);
       },
     );
 

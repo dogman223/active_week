@@ -10,10 +10,8 @@ class ActivityItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(activity.title),
-      ),
+    return ListTile(
+      title: Text(activity.title),
     );
   }
 }
