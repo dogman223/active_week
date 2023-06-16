@@ -35,6 +35,8 @@ class _NewActivityState extends State<NewActivity> {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'title': _titleController.text,
+          'day': _selectedDay.title,
+          'category': _selectedCategory.name
         }));
 
     if (!context.mounted) {
