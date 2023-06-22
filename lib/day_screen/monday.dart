@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:active_week/model/day.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -27,18 +26,27 @@ class _MondayScreenState extends State<MondayScreen> {
     _loadActivities();
   }
 
+  //List<Activity> mondayActivities = [];
+
   //Method loads list of data from data base.
   void _loadActivities() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
     final response = await http.get(url);
     final Map<String, dynamic> listData = json.decode(response.body);
+
     for (final item in listData.entries) {
-      widget.activities
-          .add(Activity(item.value['title'], days.first, Category.family));
+      final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);
+      final category = Category.values
+          .firstWhere((catIt) => catIt.name == item.value['category']);
+      if (day == days[0]) {
+        widget.activities.add(Activity(item.value['title'], day, category));
+      }
     }
+
     setState(() {
       widget.activities;
+      //mondayActivities;
     });
   }
 
@@ -66,12 +74,11 @@ class _MondayScreenState extends State<MondayScreen> {
   //Widget builds list of data(activities) if not empty.
   Widget buildListContent(BuildContext context) {
     Widget listContent = ListView.builder(
-      padding: const EdgeInsets.all(10),
-      itemCount: widget.activities.length,
-      itemBuilder: (context, index) {
-        return ActivityItem(activity: widget.activities[index]);
-      },
-    );
+        padding: const EdgeInsets.all(10),
+        itemCount: widget.activities.length,
+        itemBuilder: (context, index) {
+          return ActivityItem(activity: widget.activities[index]);
+        });
 
     if (widget.activities.isEmpty) {
       listContent = const Center(
@@ -80,6 +87,7 @@ class _MondayScreenState extends State<MondayScreen> {
         style: TextStyle(fontSize: 30),
       ));
     }
+
     return listContent;
   }
 
