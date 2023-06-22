@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
 import '../widgets/activity_item.dart';
 import '../widgets/new_activity.dart';
-import '../list/days_list.dart';
 
 //Screen of activities in a day
-class ThursdayScreen extends StatefulWidget {
-  ThursdayScreen({super.key, required this.activities});
+class WednesdayScreen extends StatefulWidget {
+  WednesdayScreen({super.key, required this.activities});
 
   List<Activity> activities;
 
   @override
-  State<ThursdayScreen> createState() => _ThursdayScreenState();
+  State<WednesdayScreen> createState() => _WenesdayScreenState();
 }
 
-class _ThursdayScreenState extends State<ThursdayScreen> {
+class _WenesdayScreenState extends State<WednesdayScreen> {
   @override
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _ThursdayScreenState extends State<ThursdayScreen> {
       final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);
       final category = Category.values
           .firstWhere((catIt) => catIt.name == item.value['category']);
-      if (day == days[3]) {
+      if (day == days[2]) {
         widget.activities.add(Activity(item.value['title'], day, category));
       }
     }
@@ -79,7 +79,7 @@ class _ThursdayScreenState extends State<ThursdayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Thursday')),
+      appBar: AppBar(title: Text('Wenesday')),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

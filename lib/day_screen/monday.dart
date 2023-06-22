@@ -26,15 +26,12 @@ class _MondayScreenState extends State<MondayScreen> {
     _loadActivities();
   }
 
-  //List<Activity> mondayActivities = [];
-
   //Method loads list of data from data base.
   void _loadActivities() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
     final response = await http.get(url);
     final Map<String, dynamic> listData = json.decode(response.body);
-
     for (final item in listData.entries) {
       final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);
       final category = Category.values
@@ -46,7 +43,6 @@ class _MondayScreenState extends State<MondayScreen> {
 
     setState(() {
       widget.activities;
-      //mondayActivities;
     });
   }
 
