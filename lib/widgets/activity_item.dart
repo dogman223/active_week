@@ -11,8 +11,14 @@ class ActivityItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.tag),
-      title: Text(activity.title),
+      leading: const Icon(
+        Icons.tag,
+        color: Colors.green,
+      ),
+      title: Text(
+        activity.title,
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      ),
       subtitle: Text(activity.category.name),
     );
   }
