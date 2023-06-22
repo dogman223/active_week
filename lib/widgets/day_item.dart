@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '/day_screen/monday.dart';
 import '../model/day.dart';
 
-//Grid of day
+//Grid of day. Apearance of each section of day on week_screen.
 class DayItem extends StatelessWidget {
   const DayItem({super.key, required this.day, required this.onSelectDay});
 

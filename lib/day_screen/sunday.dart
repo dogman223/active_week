@@ -26,7 +26,7 @@ class _SundayScreenState extends State<SundayScreen> {
     _loadActivities();
   }
 
-  //Method loads list of data from data base.
+  //Method loads list of data from data base. Loads activities for Sunday.
   void _loadActivities() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
@@ -45,6 +45,7 @@ class _SundayScreenState extends State<SundayScreen> {
     });
   }
 
+  //Method opens modal bottom sheet with add new activity function.
   void _openAddActivityOverlay(BuildContext context) {
     showModalBottomSheet(
         context: context,

@@ -8,7 +8,7 @@ import '../list/days_list.dart';
 import '../model/activity.dart';
 import '../model/day.dart';
 
-//Class contains functionality of adding New Activity
+//Class contains functionality of adding New Activity data
 class NewActivity extends StatefulWidget {
   const NewActivity({super.key, required this.onAddActivity});
 
@@ -24,10 +24,10 @@ class _NewActivityState extends State<NewActivity> {
   Category _selectedCategory = Category.family;
   Day _selectedDay = days.first;
 
-  //Method save input of New Activity and adds it to data base.
-  //Post method included.
-  //Uses onAddActivity Function.
-  //Shows error if input is invalid.
+  //Method save input of New Activity and adds it to data base and to list.
+  // # Post method included.
+  // # Uses onAddActivity Function.
+  // # Shows error if input is invalid.
   void _submitActivityData() async {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
@@ -53,6 +53,7 @@ class _NewActivityState extends State<NewActivity> {
     _titleController.dispose();
   }
 
+  //Apearance, functions & buttons of visible modal bottom sheet.
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,6 +83,7 @@ class _NewActivityState extends State<NewActivity> {
                 }),
           ],
         ),
+        //Button with choice of day of a New Activity
         Row(
           children: [
             DropdownButton(

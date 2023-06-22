@@ -5,9 +5,8 @@ import '../day_screen/saturday.dart';
 import '../day_screen/sunday.dart';
 import '../day_screen/thursday.dart';
 import '../day_screen/tuesday.dart';
-import '../day_screen/wenesday.dart';
+import '../day_screen/wednesday.dart';
 import '/list/days_list.dart';
-import '/model/activity.dart';
 import '/model/day.dart';
 import '/widgets/day_item.dart';
 import '/day_screen/monday.dart';
@@ -18,44 +17,44 @@ class WeekScreen extends StatelessWidget {
 
   //Selecting day Function
   void _selectDay(BuildContext context, Day day) {
-    switch (days.indexOf(day)) {
-      case 0:
+    switch (day.title) {
+      case 'Monday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => MondayScreen(
                   activities: [],
                 )));
         break;
-      case 1:
+      case 'Tuesday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => TuesdayScreen(
                   activities: [],
                 )));
         break;
-      case 2:
+      case 'Wednesday':
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => WenesdayScreen(
+            builder: (context) => WednesdayScreen(
                   activities: [],
                 )));
         break;
-      case 3:
+      case 'Thursday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ThursdayScreen(
                   activities: [],
                 )));
         break;
-      case 4:
+      case 'Friday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => FridayScreen(
                   activities: [],
                 )));
         break;
-      case 5:
+      case 'Saturday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => SaturdayScreen(
                   activities: [],
                 )));
         break;
-      case 6:
+      case 'Sunday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => SundayScreen(
                   activities: [],

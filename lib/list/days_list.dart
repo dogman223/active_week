@@ -4,8 +4,8 @@ import '/model/day.dart';
 
 var days = [
   Day('Monday'),
-  Day('Tueday'),
-  Day('Wenesday'),
+  Day('Tuesday'),
+  Day('Wednesday'),
   Day('Thursday'),
   Day('Friday'),
   Day('Saturday'),
