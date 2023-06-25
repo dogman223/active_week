@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/day_screen/monday.dart';
 import '../day_screen/friday.dart';
 import '../day_screen/saturday.dart';
 import '../day_screen/sunday.dart';
@@ -9,11 +10,10 @@ import '../day_screen/wednesday.dart';
 import '/list/days_list.dart';
 import '/model/day.dart';
 import '/widgets/day_item.dart';
-import '/day_screen/monday.dart';
 
 //Visible main menu with view of days in week
 class WeekScreen extends StatelessWidget {
-  WeekScreen({super.key});
+  const WeekScreen({super.key});
 
   //Selecting day Function
   void _selectDay(BuildContext context, Day day) {
@@ -69,19 +69,18 @@ class WeekScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Active Week'),
         ),
-        body: GridView(
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 130,
-                childAspectRatio: 2,
-                crossAxisSpacing: 1,
-                mainAxisSpacing: 1),
-            children: [
-              for (final day in days)
-                DayItem(
+        body: Center(
+          child: Column(children: [
+            for (final day in days)
+              Container(
+                padding: const EdgeInsets.all(20),
+                child: DayItem(
                     day: day,
                     onSelectDay: () {
                       _selectDay(context, day);
-                    })
-            ]));
+                    }),
+              )
+          ]),
+        ));
   }
 }
