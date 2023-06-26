@@ -15,9 +15,12 @@ class ActivityItem extends StatelessWidget {
         Icons.tag,
         color: Colors.green,
       ),
-      title: Text(
-        activity.title,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+      title: Card(
+        elevation: 5,
+        child: Text(
+          activity.title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       subtitle: Text(activity.category.name),
     );
