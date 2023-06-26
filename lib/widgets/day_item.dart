@@ -14,23 +14,39 @@ class DayItem extends StatelessWidget {
   //Widget builds column with day
   Widget buildDay(BuildContext context, Day title) {
     return Card(
-        child: Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).primaryColor, width: 3),
-        borderRadius:
-            const BorderRadiusDirectional.all(Radius.elliptical(70, 50)),
-      ),
-      child: Text(
-        day.title,
-        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-      ),
-    ));
+        elevation: 30,
+        shadowColor: Theme.of(context).primaryColor,
+        child: SizedBox(
+          width: 120,
+          height: 50,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border:
+                  Border.all(width: 3, color: Theme.of(context).primaryColor),
+              borderRadius:
+                  const BorderRadiusDirectional.all(Radius.elliptical(10, 50)),
+            ),
+            child: Center(
+              child: Text(
+                day.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+        ));
   }
 
+  //Inkwell build options
   @override
   Widget build(BuildContext context) {
     return InkWell(
+        splashColor: Theme.of(context).primaryColor,
+        splashFactory: InkSparkle.splashFactory,
+        borderRadius: const BorderRadius.all(Radius.elliptical(10, 50)),
         onTap: (onSelectDay),
         child: Container(
           child: buildDay(context, day),
