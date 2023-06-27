@@ -16,12 +16,19 @@ enum Category {
   family,
   friends,
   work,
+  health,
 }
 
 class Activity {
   final String title;
   final Day day;
   final Category category;
+  final String id;
 
-  Activity(@required this.title, @required this.day, @required this.category);
+  Activity(
+    @required this.title,
+    this.day,
+    @required this.category,
+    this.id,
+  );
 }

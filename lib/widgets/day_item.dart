@@ -16,6 +16,9 @@ class DayItem extends StatelessWidget {
     return Card(
         elevation: 30,
         shadowColor: Theme.of(context).primaryColor,
+        shape: const RoundedRectangleBorder(
+            borderRadius:
+                BorderRadiusDirectional.all(Radius.elliptical(10, 50))),
         child: SizedBox(
           width: 120,
           height: 50,

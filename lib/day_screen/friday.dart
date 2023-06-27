@@ -11,9 +11,12 @@ import '../widgets/new_activity.dart';
 
 //Screen of activities in a day
 class FridayScreen extends StatefulWidget {
-  FridayScreen({super.key, required this.activities});
+  FridayScreen(
+      {super.key, required this.activities, required this.deleteActivity});
 
   List<Activity> activities;
+  final Function deleteActivity;
+  String? error;
 
   @override
   State<FridayScreen> createState() => _FridayScreenState();
@@ -31,13 +34,23 @@ class _FridayScreenState extends State<FridayScreen> {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
     final response = await http.get(url);
+    if (response.statusCode >= 400) {
+      setState(() {
+        widget.error = 'Failed to fetch data. Please try again later...';
+      });
+    }
     final Map<String, dynamic> listData = json.decode(response.body);
     for (final item in listData.entries) {
       final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);
       final category = Category.values
           .firstWhere((catIt) => catIt.name == item.value['category']);
       if (day == days[4]) {
-        widget.activities.add(Activity(item.value['title'], day, category));
+        widget.activities.add(Activity(
+          item.value['title'],
+          day,
+          category,
+          item.key,
+        ));
       }
     }
     setState(() {
@@ -58,12 +71,24 @@ class _FridayScreenState extends State<FridayScreen> {
     });
   }
 
+  //Method deletes activity from activities list
+  void _deleteActivity(Activity activity) {
+    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
+        'activities-list/${activity.id}.json');
+
+    setState(() {
+      widget.activities.remove(activity);
+    });
+  }
+
   //Widget builds list of activities if not empty
   Widget buildListContent(BuildContext context) {
     Widget listContent = ListView.builder(
         itemCount: widget.activities.length,
         itemBuilder: (context, index) {
-          return ActivityItem(activity: widget.activities[index]);
+          return ActivityItem(
+              activity: widget.activities[index],
+              deleteActivity: _deleteActivity);
         });
 
     if (widget.activities.isEmpty) {
@@ -73,6 +98,15 @@ class _FridayScreenState extends State<FridayScreen> {
         style: TextStyle(fontSize: 30),
       ));
     }
+
+    if (widget.error != null) {
+      listContent = Center(
+          child: Text(
+        widget.error!,
+        style: const TextStyle(fontSize: 30),
+      ));
+    }
+
     return listContent;
   }
 

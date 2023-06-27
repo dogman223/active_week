@@ -43,8 +43,8 @@ class _NewActivityState extends State<NewActivity> {
       return;
     }
 
-    widget.onAddActivity(
-        Activity(_titleController.text, _selectedDay, _selectedCategory));
+    widget.onAddActivity(Activity(_titleController.text, _selectedDay,
+        _selectedCategory, DateTime.now().toString()));
   }
 
   @override
