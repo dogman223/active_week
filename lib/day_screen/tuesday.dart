@@ -11,11 +11,9 @@ import '../list/days_list.dart';
 
 //Screen of activities in a day
 class TuesdayScreen extends StatefulWidget {
-  TuesdayScreen(
-      {super.key, required this.activities, required this.deleteActivity});
+  TuesdayScreen({super.key, required this.activities});
 
   List<Activity> activities;
-  final Function deleteActivity;
   String? error;
 
   @override
@@ -75,7 +73,7 @@ class _TuesdayScreenState extends State<TuesdayScreen> {
   void _deleteActivity(Activity activity) {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list/${activity.id}.json');
-
+    http.delete(url);
     setState(() {
       widget.activities.remove(activity);
     });

@@ -11,11 +11,9 @@ import '../widgets/activity_item.dart';
 
 //Screen of activities on Monday
 class MondayScreen extends StatefulWidget {
-  MondayScreen(
-      {super.key, required this.activities, required this.deleteActivity});
+  MondayScreen({super.key, required this.activities});
 
   List<Activity> activities;
-  final Function deleteActivity;
   String? error;
 
   @override

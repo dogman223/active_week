@@ -16,26 +16,13 @@ import '/widgets/day_item.dart';
 
 //Visible main menu with view of days in week
 class WeekScreen extends StatefulWidget {
-  const WeekScreen({super.key});
+  WeekScreen({super.key});
 
   @override
   State<WeekScreen> createState() => _WeekScreenState();
 }
 
 class _WeekScreenState extends State<WeekScreen> {
-  late final Activity activity;
-  final List<Activity> activities = [];
-
-  //Method deletes activity from activities list
-  void _deleteActivity(Activity activity) {
-    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
-        'activities-list/${activity.id}.json');
-    http.delete(url);
-    setState(() {
-      activities.remove(activity);
-    });
-  }
-
   //Selecting day Function
   void _selectDay(BuildContext context, Day day) {
     switch (day.title) {
@@ -43,49 +30,42 @@ class _WeekScreenState extends State<WeekScreen> {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => MondayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Tuesday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => TuesdayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Wednesday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => WednesdayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Thursday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ThursdayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Friday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => FridayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Saturday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => SaturdayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
       case 'Sunday':
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => SundayScreen(
                   activities: [],
-                  deleteActivity: _deleteActivity,
                 )));
         break;
     }
@@ -106,7 +86,6 @@ class _WeekScreenState extends State<WeekScreen> {
                     day: day,
                     onSelectDay: () {
                       _selectDay(context, day);
-                      _deleteActivity(activity);
                     }),
               )
           ]),
