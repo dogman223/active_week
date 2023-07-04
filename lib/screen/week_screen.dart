@@ -76,6 +76,8 @@ class _WeekScreenState extends State<WeekScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Active Week'),
+          elevation: 20,
+          shadowColor: Theme.of(context).primaryColor,
         ),
         body: Center(
           child: Column(children: [

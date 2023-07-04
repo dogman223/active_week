@@ -113,7 +113,11 @@ class _SundayScreenState extends State<SundayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sunday')),
+      appBar: AppBar(
+        title: const Text('Sunday'),
+        elevation: 20,
+        shadowColor: Theme.of(context).primaryColor,
+      ),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

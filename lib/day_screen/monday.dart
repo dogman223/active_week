@@ -51,7 +51,6 @@ class _MondayScreenState extends State<MondayScreen> {
         ));
       }
     }
-
     setState(() {
       widget.activities;
     });
@@ -117,9 +116,12 @@ class _MondayScreenState extends State<MondayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-        'Monday',
-      )),
+        title: const Text(
+          'Monday',
+        ),
+        elevation: 20,
+        shadowColor: Theme.of(context).primaryColor,
+      ),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

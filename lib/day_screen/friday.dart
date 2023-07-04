@@ -85,8 +85,9 @@ class _FridayScreenState extends State<FridayScreen> {
         itemCount: widget.activities.length,
         itemBuilder: (context, index) {
           return ActivityItem(
-              activity: widget.activities[index],
-              deleteActivity: _deleteActivity);
+            activity: widget.activities[index],
+            deleteActivity: _deleteActivity,
+          );
         });
 
     if (widget.activities.isEmpty) {
@@ -112,7 +113,11 @@ class _FridayScreenState extends State<FridayScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Friday')),
+      appBar: AppBar(
+        title: const Text('Friday'),
+        elevation: 20,
+        shadowColor: Theme.of(context).primaryColor,
+      ),
       body: buildListContent(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
