@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import '../model/activity.dart';
 import '../widgets/activity_item.dart';
+import '../widgets/list_content.dart';
 import '../widgets/new_activity.dart';
 import '../list/days_list.dart';
 
@@ -69,46 +70,6 @@ class _ThursdayScreenState extends State<ThursdayScreen> {
     });
   }
 
-  //Method deletes activity from activities list
-  void _deleteActivity(Activity activity) {
-    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
-        'activities-list/${activity.id}.json');
-    http.delete(url);
-    setState(() {
-      widget.activities.remove(activity);
-    });
-  }
-
-  //Widget builds list of activities if not empty
-  Widget buildListContent(BuildContext context) {
-    Widget listContent = ListView.builder(
-        itemCount: widget.activities.length,
-        itemBuilder: (context, index) {
-          return ActivityItem(
-            activity: widget.activities[index],
-            deleteActivity: _deleteActivity,
-          );
-        });
-
-    if (widget.activities.isEmpty) {
-      listContent = const Center(
-          child: Text(
-        'No Activities today yet!',
-        style: TextStyle(fontSize: 30),
-      ));
-    }
-
-    if (widget.error != null) {
-      listContent = Center(
-          child: Text(
-        widget.error!,
-        style: const TextStyle(fontSize: 30),
-      ));
-    }
-
-    return listContent;
-  }
-
   //Build Scaffold
   @override
   Widget build(BuildContext context) {
@@ -118,7 +79,7 @@ class _ThursdayScreenState extends State<ThursdayScreen> {
         elevation: 20,
         shadowColor: Theme.of(context).primaryColor,
       ),
-      body: buildListContent(context),
+      body: ListContent(activities: widget.activities),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
