@@ -23,50 +23,66 @@ class WeekScreen extends StatefulWidget {
 }
 
 class _WeekScreenState extends State<WeekScreen> {
-  //Selecting day Function
+  //Future build screen for day
+  Future buildNavigator(BuildContext context, Widget buildDayScreen) {
+    var navigator = Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => buildDayScreen,
+    ));
+    return navigator;
+  }
+
+  //Selecting day Function.
+  //Choose day to buildNavigator for it.
   void _selectDay(BuildContext context, Day day) {
     switch (day.title) {
       case 'Monday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MondayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            MondayScreen(
+              activities: [],
+            ));
         break;
       case 'Tuesday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => TuesdayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            TuesdayScreen(
+              activities: [],
+            ));
         break;
       case 'Wednesday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => WednesdayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            WednesdayScreen(
+              activities: [],
+            ));
         break;
       case 'Thursday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => ThursdayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            ThursdayScreen(
+              activities: [],
+            ));
         break;
       case 'Friday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FridayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            FridayScreen(
+              activities: [],
+            ));
         break;
       case 'Saturday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SaturdayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            SaturdayScreen(
+              activities: [],
+            ));
         break;
       case 'Sunday':
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => SundayScreen(
-                  activities: [],
-                )));
+        buildNavigator(
+            context,
+            SundayScreen(
+              activities: [],
+            ));
         break;
     }
   }
