@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:active_week/widgets/activity_item.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -15,7 +14,6 @@ class TuesdayScreen extends StatefulWidget {
   TuesdayScreen({super.key, required this.activities});
 
   List<Activity> activities;
-  String? error;
 
   @override
   State<TuesdayScreen> createState() => _TuesdayScreenState();
@@ -33,11 +31,6 @@ class _TuesdayScreenState extends State<TuesdayScreen> {
     final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
         'activities-list.json');
     final response = await http.get(url);
-    if (response.statusCode >= 400) {
-      setState(() {
-        widget.error = 'Failed to fetch data. Please try again later...';
-      });
-    }
     final Map<String, dynamic> listData = json.decode(response.body);
     for (final item in listData.entries) {
       final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);

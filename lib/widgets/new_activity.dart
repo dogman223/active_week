@@ -53,73 +53,102 @@ class _NewActivityState extends State<NewActivity> {
     _titleController.dispose();
   }
 
+  //Build Text Field for title input.
+  Widget buildTextField(BuildContext context) {
+    var textField = TextField(
+      controller: _titleController,
+      maxLength: 50,
+      decoration: const InputDecoration(label: Text('Title')),
+    );
+    return textField;
+  }
+
+  //Build button of select category functionality.
+  Widget buildCategoriesButton(BuildContext context) {
+    var categoriesButton = Row(
+      children: [
+        DropdownButton(
+            value: _selectedCategory,
+            items: Category.values
+                .map((category) => DropdownMenuItem(
+                    value: category, child: Text(category.name)))
+                .toList(),
+            onChanged: (value) {
+              if (value == null) {
+                return;
+              }
+              setState(() {
+                _selectedCategory = value;
+              });
+            }),
+      ],
+    );
+    return categoriesButton;
+  }
+
+  //Build button of select day functionality.
+  Widget buildDayButton(BuildContext context) {
+    var dayButton = Row(
+      children: [
+        DropdownButton(
+            value: _selectedDay,
+            items: days
+                .map((day) =>
+                    DropdownMenuItem(value: day, child: Text(day.title)))
+                .toList(),
+            onChanged: (value) {
+              if (value == null) {
+                return;
+              }
+              setState(() {
+                _selectedDay = value;
+              });
+            }),
+      ],
+    );
+    return dayButton;
+  }
+
+  //Build 'save' activity button.
+  Widget buildSaveButton(BuildContext context) {
+    var saveButton = Row(
+      children: [
+        ElevatedButton(
+            onPressed: () {
+              print(_titleController.text);
+            },
+            child: const Text('Save Activity')),
+      ],
+    );
+    return saveButton;
+  }
+
+  //Build add activity button.
+  Widget buildAddActivityButton(BuildContext context) {
+    var addActivityButton = Row(
+      children: [
+        ElevatedButton(
+            onPressed: _submitActivityData, child: const Text('Add Activity')),
+      ],
+    );
+    return addActivityButton;
+  }
+
   //Apearance, functions & buttons of visible modal bottom sheet.
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         //TextField with New Activity title input
-        TextField(
-          controller: _titleController,
-          maxLength: 50,
-          decoration: const InputDecoration(label: Text('Title')),
-        ),
+        buildTextField(context),
         //Button with choice category of New Activity
-        Row(
-          children: [
-            DropdownButton(
-                value: _selectedCategory,
-                items: Category.values
-                    .map((category) => DropdownMenuItem(
-                        value: category, child: Text(category.name)))
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                }),
-          ],
-        ),
+        buildCategoriesButton(context),
         //Button with choice of day of a New Activity
-        Row(
-          children: [
-            DropdownButton(
-                value: _selectedDay,
-                items: days
-                    .map((day) =>
-                        DropdownMenuItem(value: day, child: Text(day.title)))
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedDay = value;
-                  });
-                }),
-          ],
-        ),
+        buildDayButton(context),
         //'Save Activity' button
-        Row(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  print(_titleController.text);
-                },
-                child: const Text('Save Activity')),
-          ],
-        ),
-        //'Add Activity' button
-        Row(
-          children: [
-            ElevatedButton(
-                onPressed: _submitActivityData,
-                child: const Text('Add Activity')),
-          ],
-        ),
+        buildSaveButton(context),
+        //'Add Activity' button, adds new data to list and to data base.
+        buildAddActivityButton(context),
       ],
     );
   }

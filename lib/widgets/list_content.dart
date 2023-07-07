@@ -10,7 +10,6 @@ class ListContent extends StatefulWidget {
   ListContent({super.key, required this.activities});
 
   List<Activity> activities;
-  String? error;
 
   @override
   State<ListContent> createState() => _ListContentState();
@@ -44,14 +43,6 @@ class _ListContentState extends State<ListContent> {
           child: Text(
         'No Activities today yet!',
         style: TextStyle(fontSize: 30),
-      ));
-    }
-
-    if (widget.error != null) {
-      listContent = Center(
-          child: Text(
-        widget.error!,
-        style: const TextStyle(fontSize: 30),
       ));
     }
 

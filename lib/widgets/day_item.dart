@@ -11,6 +11,21 @@ class DayItem extends StatelessWidget {
 
   final Day day;
   final void Function() onSelectDay;
+
+  //Build title for day
+  Widget buildDayTitle(BuildContext context, Day title) {
+    var dayTitle = Center(
+      child: Text(
+        day.title,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    );
+    return dayTitle;
+  }
+
   //Widget builds column with day
   Widget buildDay(BuildContext context, Day title) {
     return Card(
@@ -30,15 +45,7 @@ class DayItem extends StatelessWidget {
               borderRadius:
                   const BorderRadiusDirectional.all(Radius.elliptical(10, 50)),
             ),
-            child: Center(
-              child: Text(
-                day.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-            ),
+            child: buildDayTitle(context, title),
           ),
         ));
   }
