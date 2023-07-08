@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:active_week/widgets/day_scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -50,37 +51,9 @@ class _MondayScreenState extends State<MondayScreen> {
     });
   }
 
-  //Method opens modal bottom sheet with add new activity function.
-  void _openAddActivityOverlay(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (contex) => NewActivity(onAddActivity: _addActivity));
-  }
-
-  //Method adds New Actvity to activities list
-  void _addActivity(Activity activity) async {
-    setState(() {
-      widget.activities.add(activity);
-    });
-  }
-
   //Build Scaffold
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Monday',
-        ),
-        elevation: 20,
-        shadowColor: Theme.of(context).primaryColor,
-      ),
-      body: ListContent(activities: widget.activities),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _openAddActivityOverlay(context),
-      ),
-    );
+    return DayScaffold(activities: widget.activities);
   }
 }
