@@ -53,18 +53,15 @@ class _NewActivityState extends State<NewActivity> {
     _titleController.dispose();
   }
 
-  //Build Text Field for title input.
-  Widget buildTextField(BuildContext context) {
+  //Apearance, functions & buttons of visible modal bottom sheet.
+  //Buttons are keeping into variables.
+  @override
+  Widget build(BuildContext context) {
     var textField = TextField(
       controller: _titleController,
       maxLength: 50,
       decoration: const InputDecoration(label: Text('Title')),
     );
-    return textField;
-  }
-
-  //Build button of select category functionality.
-  Widget buildCategoriesButton(BuildContext context) {
     var categoriesButton = Row(
       children: [
         DropdownButton(
@@ -83,11 +80,6 @@ class _NewActivityState extends State<NewActivity> {
             }),
       ],
     );
-    return categoriesButton;
-  }
-
-  //Build button of select day functionality.
-  Widget buildDayButton(BuildContext context) {
     var dayButton = Row(
       children: [
         DropdownButton(
@@ -106,49 +98,41 @@ class _NewActivityState extends State<NewActivity> {
             }),
       ],
     );
-    return dayButton;
-  }
-
-  //Build 'save' activity button.
-  Widget buildSaveButton(BuildContext context) {
     var saveButton = Row(
       children: [
         ElevatedButton(
+            style: ButtonStyle(
+                elevation: MaterialStateProperty.all(10),
+                shadowColor: const MaterialStatePropertyAll(Colors.green)),
             onPressed: () {
               print(_titleController.text);
             },
             child: const Text('Save Activity')),
       ],
     );
-    return saveButton;
-  }
-
-  //Build add activity button.
-  Widget buildAddActivityButton(BuildContext context) {
     var addActivityButton = Row(
       children: [
         ElevatedButton(
-            onPressed: _submitActivityData, child: const Text('Add Activity')),
+            style: ButtonStyle(
+                elevation: MaterialStateProperty.all(10),
+                shadowColor: const MaterialStatePropertyAll(Colors.green)),
+            onPressed: _submitActivityData,
+            child: const Text('Add Activity')),
       ],
     );
-    return addActivityButton;
-  }
 
-  //Apearance, functions & buttons of visible modal bottom sheet.
-  @override
-  Widget build(BuildContext context) {
     return Column(
       children: [
         //TextField with New Activity title input
-        buildTextField(context),
+        textField,
         //Button with choice category of New Activity
-        buildCategoriesButton(context),
+        categoriesButton,
         //Button with choice of day of a New Activity
-        buildDayButton(context),
+        dayButton,
         //'Save Activity' button
-        buildSaveButton(context),
+        saveButton,
         //'Add Activity' button, adds new data to list and to data base.
-        buildAddActivityButton(context),
+        addActivityButton,
       ],
     );
   }
