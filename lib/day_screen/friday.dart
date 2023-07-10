@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
+import '../model/day.dart';
 import '../widgets/day_scaffold.dart';
 
 //Screen of activities in a day
@@ -49,9 +50,38 @@ class _FridayScreenState extends State<FridayScreen> {
     });
   }
 
+  void switchTitle(String title, Day day) {
+    switch (day.title) {
+      case 'Monday':
+        Text('Monday');
+        break;
+      case 'Tuesday':
+        Text('Tuesday');
+        break;
+      case 'Wednesday':
+        Text('Wednesday');
+        break;
+      case 'Thursday':
+        Text('Thursday');
+        break;
+      case 'Friday':
+        Text('Friday');
+        break;
+      case 'Saturday':
+        Text('Saturday');
+        break;
+      case 'Sunday':
+        Text('Sunday');
+        break;
+    }
+  }
+
   //Build Scaffold
   @override
   Widget build(BuildContext context) {
-    return DayScaffold(activities: widget.activities);
+    return DayScaffold(
+      activities: widget.activities,
+      title: 'Friday',
+    );
   }
 }

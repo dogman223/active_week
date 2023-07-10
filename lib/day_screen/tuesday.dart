@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:active_week/widgets/day_scaffold.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 import '../model/activity.dart';
-import '../widgets/list_content.dart';
-import '../widgets/new_activity.dart';
 import '../list/days_list.dart';
+import '../model/day.dart';
 
 //Screen of activities in a day
 class TuesdayScreen extends StatefulWidget {
@@ -50,34 +50,12 @@ class _TuesdayScreenState extends State<TuesdayScreen> {
     });
   }
 
-  //Method opens modal bottom sheet with add new activity function.
-  void _openAddActivityOverlay(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (contex) => NewActivity(onAddActivity: _addActivity));
-  }
-
-  void _addActivity(Activity activity) {
-    setState(() {
-      widget.activities.add(activity);
-    });
-  }
-
   //Build Scaffold
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tuesday'),
-        elevation: 20,
-        shadowColor: Theme.of(context).primaryColor,
-      ),
-      body: ListContent(activities: widget.activities),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _openAddActivityOverlay(context),
-      ),
+    return DayScaffold(
+      activities: widget.activities,
+      title: 'Tuesday',
     );
   }
 }

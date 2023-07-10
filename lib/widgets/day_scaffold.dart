@@ -4,11 +4,12 @@ import 'list_content.dart';
 import 'new_activity.dart';
 import 'package:active_week/model/activity.dart';
 
-//Scaffold and function of adding new data for each day screen.
+//Scaffold, and function of adding new data, for each day screen.
 class DayScaffold extends StatefulWidget {
-  DayScaffold({super.key, required this.activities});
+  DayScaffold({super.key, required this.activities, required this.title});
 
   List<Activity> activities;
+  String title;
 
   @override
   State<DayScaffold> createState() => _DayScaffoldState();
@@ -33,9 +34,7 @@ class _DayScaffoldState extends State<DayScaffold> {
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Monday',
-        ),
+        title: Text(widget.title),
         elevation: 20,
         shadowColor: Theme.of(context).primaryColor,
       ),

@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 
 import 'package:active_week/list/days_list.dart';
 import '../model/activity.dart';
-import '../widgets/new_activity.dart';
-import 'package:active_week/widgets/list_content.dart';
 
 //Screen of activities on Monday
 class MondayScreen extends StatefulWidget {
@@ -54,6 +52,9 @@ class _MondayScreenState extends State<MondayScreen> {
   //Build Scaffold
   @override
   Widget build(BuildContext context) {
-    return DayScaffold(activities: widget.activities);
+    return DayScaffold(
+      activities: widget.activities,
+      title: 'Monday',
+    );
   }
 }
