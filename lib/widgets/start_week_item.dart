@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Item of button in main menu
 class StartWeekItem extends StatelessWidget {
   const StartWeekItem({
     super.key,
@@ -12,7 +13,11 @@ class StartWeekItem extends StatelessWidget {
   Widget build(context) {
     return InkWell(
       onTap: (selectStartWeek),
-      child: const Center(child: Text("Let's start this week!")),
+      child: const Center(
+          child: Text(
+        "Go to Activities!",
+        style: TextStyle(color: Colors.white, fontSize: 30),
+      )),
     );
   }
 }

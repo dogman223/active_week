@@ -2,8 +2,9 @@ import 'package:active_week/screen/week_screen.dart';
 import 'package:active_week/widgets/start_week_item.dart';
 import 'package:flutter/material.dart';
 
+//Main menu
 class MainMenuScreen extends StatelessWidget {
-  MainMenuScreen({super.key});
+  const MainMenuScreen({super.key});
 
   //Future navigates to screen of day
   Future navigateWeekScreen(BuildContext context, Widget buildWeekScreen) {
@@ -14,12 +15,13 @@ class MainMenuScreen extends StatelessWidget {
   }
 
   void openWeekScreen(BuildContext context, WeekScreen weekScreen) {
-    navigateWeekScreen(context, const WeekScreen());
+    navigateWeekScreen(context, WeekScreen());
   }
 
   @override
   Widget build(context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
         title: const Text('Active Week'),
         elevation: 20,

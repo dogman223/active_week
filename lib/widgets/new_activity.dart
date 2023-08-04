@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:active_week/list/icons_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -23,6 +24,7 @@ class _NewActivityState extends State<NewActivity> {
   final _titleController = TextEditingController();
   Category _selectedCategory = Category.family;
   Day _selectedDay = days.first;
+  //DateTime _selectedDate;
 
   //Method save input of New Activity and adds it to data base and to list.
   // # Post method included.
@@ -36,15 +38,20 @@ class _NewActivityState extends State<NewActivity> {
         body: json.encode({
           'title': _titleController.text,
           'day': _selectedDay.title,
-          'category': _selectedCategory.name
+          'category': _selectedCategory.name,
         }));
 
     if (!context.mounted) {
       return;
     }
 
-    widget.onAddActivity(Activity(_titleController.text, _selectedDay,
-        _selectedCategory, DateTime.now().toString()));
+    widget.onAddActivity(Activity(
+      _titleController.text,
+      _selectedDay,
+      _selectedCategory,
+      DateTime.now().toString(),
+      //_selectedDate,
+    ));
   }
 
   @override
@@ -54,84 +61,114 @@ class _NewActivityState extends State<NewActivity> {
   }
 
   //Apearance, functions & buttons of visible modal bottom sheet.
-  //Buttons are keeping into variables.
+  //Buttons are storing into variables.
   @override
   Widget build(BuildContext context) {
-    var textField = TextField(
-      controller: _titleController,
-      maxLength: 50,
-      decoration: const InputDecoration(label: Text('Title')),
+    //TextField with New Activity title input
+    var textField = Container(
+      margin: const EdgeInsetsDirectional.all(5),
+      child: TextField(
+        controller: _titleController,
+        maxLength: 50,
+        decoration: const InputDecoration(label: Text('Title')),
+      ),
     );
-    var categoriesButton = Row(
+    //Button with choice category of New Activity
+    var categoriesButton = Container(
+      margin: const EdgeInsetsDirectional.all(5),
+      child: Row(
+        children: [
+          DropdownButton(
+              value: _selectedCategory,
+              items: Category.values
+                  .map((category) => DropdownMenuItem(
+                      value: category, child: Text(category.name)))
+                  .toList(),
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                setState(() {
+                  _selectedCategory = value;
+                });
+              }),
+        ],
+      ),
+    );
+    //Button with choice of day of a New Activity
+    var dayButton = Container(
+      margin: const EdgeInsetsDirectional.all(5),
+      child: Row(
+        children: [
+          DropdownButton(
+              value: _selectedDay,
+              items: days
+                  .map((day) =>
+                      DropdownMenuItem(value: day, child: Text(day.title)))
+                  .toList(),
+              onChanged: (value) {
+                if (value == null) {
+                  return;
+                }
+                setState(() {
+                  _selectedDay = value;
+                });
+              }),
+        ],
+      ),
+    );
+    //Date picker
+    var selectDateButton = Row(
       children: [
-        DropdownButton(
-            value: _selectedCategory,
-            items: Category.values
-                .map((category) => DropdownMenuItem(
-                    value: category, child: Text(category.name)))
-                .toList(),
-            onChanged: (value) {
-              if (value == null) {
-                return;
-              }
-              setState(() {
-                _selectedCategory = value;
-              });
-            }),
+        const Text('Selected Date'),
+        IconButton(onPressed: () {}, icon: iconsList[13]),
       ],
     );
-    var dayButton = Row(
-      children: [
-        DropdownButton(
-            value: _selectedDay,
-            items: days
-                .map((day) =>
-                    DropdownMenuItem(value: day, child: Text(day.title)))
-                .toList(),
-            onChanged: (value) {
-              if (value == null) {
-                return;
-              }
-              setState(() {
-                _selectedDay = value;
-              });
-            }),
-      ],
+    //'Save Activity' button
+    var saveButton = Container(
+      margin: const EdgeInsetsDirectional.all(5),
+      child: Row(
+        children: [
+          ElevatedButton(
+              style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(10),
+                  shadowColor: const MaterialStatePropertyAll(Colors.green)),
+              onPressed: () {
+                print(_titleController.text);
+              },
+              child: const Text('Save Activity')),
+        ],
+      ),
     );
-    var saveButton = Row(
-      children: [
-        ElevatedButton(
-            style: ButtonStyle(
-                elevation: MaterialStateProperty.all(10),
-                shadowColor: const MaterialStatePropertyAll(Colors.green)),
-            onPressed: () {
-              print(_titleController.text);
-            },
-            child: const Text('Save Activity')),
-      ],
-    );
-    var addActivityButton = Row(
-      children: [
-        ElevatedButton(
-            style: ButtonStyle(
-                elevation: MaterialStateProperty.all(10),
-                shadowColor: const MaterialStatePropertyAll(Colors.green)),
-            onPressed: _submitActivityData,
-            child: const Text('Add Activity')),
-      ],
+    //'Add Activity' button, adds new data to list and to data base.
+    var addActivityButton = Container(
+      margin: const EdgeInsetsDirectional.all(5),
+      child: Row(
+        children: [
+          ElevatedButton(
+              style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(10),
+                  shadowColor: const MaterialStatePropertyAll(Colors.green)),
+              onPressed: _submitActivityData,
+              child: const Text('Add Activity')),
+        ],
+      ),
     );
 
     return Column(
       children: [
-        //TextField with New Activity title input
         textField,
-        //Button with choice category of New Activity
-        categoriesButton,
-        //Button with choice of day of a New Activity
+        Row(
+          children: [
+            categoriesButton,
+            SizedBox(
+              width: 50,
+            ),
+            selectDateButton,
+          ],
+        ),
         dayButton,
-        //'Save Activity' button
         saveButton,
-        //'Add Activity' button, adds new data to list and to data base.
         addActivityButton,
       ],
     );

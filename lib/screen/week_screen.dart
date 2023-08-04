@@ -1,7 +1,6 @@
-import 'package:active_week/model/activity.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
 import '/day_screen/monday.dart';
 import '../day_screen/friday.dart';
@@ -12,7 +11,7 @@ import '../day_screen/tuesday.dart';
 import '../day_screen/wednesday.dart';
 import '/list/days_list.dart';
 import '/model/day.dart';
-import '/widgets/day_item.dart';
+import '../widgets/day_item.dart';
 
 //Visible main menu with view of days in week
 class WeekScreen extends StatefulWidget {
@@ -23,8 +22,8 @@ class WeekScreen extends StatefulWidget {
 }
 
 class _WeekScreenState extends State<WeekScreen> {
-  //Future build screen for day
-  Future buildNavigator(BuildContext context, Widget buildDayScreen) {
+  //Future navigates to screen of day
+  Future navigateDayScreen(BuildContext context, Widget buildDayScreen) {
     var navigator = Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => buildDayScreen,
     ));
@@ -32,53 +31,53 @@ class _WeekScreenState extends State<WeekScreen> {
   }
 
   //Selecting day Function.
-  //Choose day to buildNavigator for it.
+  //Switching navigation to screen of chosen day
   void _selectDay(BuildContext context, Day day) {
     switch (day.title) {
       case 'Monday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             MondayScreen(
               activities: [],
             ));
         break;
       case 'Tuesday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             TuesdayScreen(
               activities: [],
             ));
         break;
       case 'Wednesday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             WednesdayScreen(
               activities: [],
             ));
         break;
       case 'Thursday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             ThursdayScreen(
               activities: [],
             ));
         break;
       case 'Friday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             FridayScreen(
               activities: [],
             ));
         break;
       case 'Saturday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             SaturdayScreen(
               activities: [],
             ));
         break;
       case 'Sunday':
-        buildNavigator(
+        navigateDayScreen(
             context,
             SundayScreen(
               activities: [],
@@ -90,6 +89,7 @@ class _WeekScreenState extends State<WeekScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).primaryColor,
         appBar: AppBar(
           title: const Text('Active Week'),
           elevation: 20,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//List of available icons used for assigned to each category of activity
 var iconsList = [
   const Icon(
     Icons.sports_basketball,
@@ -52,5 +53,8 @@ var iconsList = [
   const Icon(
     Icons.health_and_safety,
     color: Colors.red,
+  ),
+  const Icon(
+    Icons.calendar_month,
   ),
 ];
