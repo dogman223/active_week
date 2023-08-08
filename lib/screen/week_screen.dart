@@ -96,17 +96,14 @@ class _WeekScreenState extends State<WeekScreen> {
           shadowColor: Theme.of(context).primaryColor,
         ),
         body: Center(
-          child: Column(children: [
-            for (final day in days)
-              Container(
-                padding: const EdgeInsets.all(20),
-                child: DayItem(
-                    day: day,
-                    onSelectDay: () {
-                      _selectDay(context, day);
-                    }),
-              )
-          ]),
-        ));
+            child: ListView.builder(
+          itemBuilder: (context, day) {
+            return DayItem(
+                day: days[day],
+                onSelectDay: () => _selectDay(context, days[day]));
+          },
+          itemCount: days.length,
+          scrollDirection: Axis.horizontal,
+        )));
   }
 }
