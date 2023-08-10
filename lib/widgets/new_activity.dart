@@ -23,8 +23,19 @@ class NewActivity extends StatefulWidget {
 class _NewActivityState extends State<NewActivity> {
   final _titleController = TextEditingController();
   Category _selectedCategory = Category.family;
-  Day _selectedDay = days.first;
-  //DateTime _selectedDate;
+  DateTime? _selectedDate;
+
+  //Date picker
+  void _presentDatePicker() async {
+    final now = DateTime.now();
+    final lastDate = DateTime(now.year + 1, now.month, now.day);
+    final pickedDate = await showDatePicker(
+        context: context, initialDate: now, firstDate: now, lastDate: lastDate);
+
+    setState(() {
+      pickedDate == _selectedDate;
+    });
+  }
 
   //Method save input of New Activity and adds it to data base and to list.
   // # Post method included.
@@ -37,9 +48,13 @@ class _NewActivityState extends State<NewActivity> {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'title': _titleController.text,
-          'day': _selectedDay.title,
           'category': _selectedCategory.name,
+          'date': _selectedDate,
         }));
+
+    setState(() {
+      dates.add(_selectedDate!);
+    });
 
     if (!context.mounted) {
       return;
@@ -47,10 +62,8 @@ class _NewActivityState extends State<NewActivity> {
 
     widget.onAddActivity(Activity(
       _titleController.text,
-      _selectedDay,
       _selectedCategory,
-      DateTime.now().toString(),
-      //_selectedDate,
+      _selectedDate!,
     ));
   }
 
@@ -95,33 +108,13 @@ class _NewActivityState extends State<NewActivity> {
         ],
       ),
     );
-    //Button with choice of day of a New Activity
-    var dayButton = Container(
-      margin: const EdgeInsetsDirectional.all(5),
-      child: Row(
-        children: [
-          DropdownButton(
-              value: _selectedDay,
-              items: days
-                  .map((day) =>
-                      DropdownMenuItem(value: day, child: Text(day.title)))
-                  .toList(),
-              onChanged: (value) {
-                if (value == null) {
-                  return;
-                }
-                setState(() {
-                  _selectedDay = value;
-                });
-              }),
-        ],
-      ),
-    );
     //Date picker
     var selectDateButton = Row(
       children: [
-        const Text('Selected Date'),
-        IconButton(onPressed: () {}, icon: iconsList[13]),
+        Text(_selectedDate == null
+            ? 'No selected date'
+            : formatter.format(_selectedDate!)),
+        IconButton(onPressed: _presentDatePicker, icon: iconsList[13]),
       ],
     );
     //'Save Activity' button
@@ -161,13 +154,12 @@ class _NewActivityState extends State<NewActivity> {
         Row(
           children: [
             categoriesButton,
-            SizedBox(
+            const SizedBox(
               width: 50,
             ),
             selectDateButton,
           ],
         ),
-        dayButton,
         saveButton,
         addActivityButton,
       ],

@@ -39,7 +39,9 @@ class _DayScaffoldState extends State<DayScaffold> {
         elevation: 20,
         shadowColor: Theme.of(context).primaryColor,
       ),
-      body: ListContent(activities: widget.activities),
+      body: ListContent(
+        activities: widget.activities,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),

@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
-import './day.dart';
+const uuid = Uuid();
+final formatter = DateFormat.yMd();
+
+///final formatter = DateFormat
 
 enum Category {
   sport,
@@ -21,14 +24,9 @@ enum Category {
 
 class Activity {
   final String title;
-  final Day day;
   final Category category;
   final String id;
+  final DateTime date;
 
-  Activity(
-    @required this.title,
-    this.day,
-    @required this.category,
-    this.id,
-  );
+  Activity(this.title, this.category, this.date) : id = uuid.v4();
 }
