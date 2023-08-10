@@ -1,14 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:active_week/screen/day_screen.dart';
 import 'package:flutter/material.dart';
 
-import '/day_screen/monday.dart';
-import '../day_screen/friday.dart';
-import '../day_screen/saturday.dart';
-import '../day_screen/sunday.dart';
-import '../day_screen/thursday.dart';
-import '../day_screen/tuesday.dart';
-import '../day_screen/wednesday.dart';
 import '/list/days_list.dart';
 import '/model/day.dart';
 import '../widgets/day_item.dart';
@@ -30,56 +24,68 @@ class _WeekScreenState extends State<WeekScreen> {
     return navigator;
   }
 
+  void _selectDateTime(BuildContext context) {
+    final today = DateTime.now();
+    int count = today.day;
+    for (count - 1; count < 32; count++) {
+      navigateDayScreen(
+          context,
+          DayScreen(
+            activities: [],
+          ));
+    }
+  }
+
   //Selecting day Function.
   //Switching navigation to screen of chosen day
   void _selectDay(BuildContext context, Day day) {
     switch (day.title) {
-      case 'Monday':
+      case 'Yesterday':
         navigateDayScreen(
             context,
-            MondayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Tuesday':
+      case 'Today':
         navigateDayScreen(
             context,
-            TuesdayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Wednesday':
+      case 'Tomorrow':
         navigateDayScreen(
             context,
-            WednesdayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Thursday':
+      case 'Day After tomorrow':
         navigateDayScreen(
             context,
-            ThursdayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Friday':
+      case 'Second Day After tomorrow':
         navigateDayScreen(
             context,
-            FridayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Saturday':
+      case 'Third Day After tomorrow':
         navigateDayScreen(
             context,
-            SaturdayScreen(
+            DayScreen(
               activities: [],
             ));
         break;
-      case 'Sunday':
+      case 'Fourth Day After tomorrow':
         navigateDayScreen(
             context,
-            SundayScreen(
+            DayScreen(
               activities: [],
             ));
         break;

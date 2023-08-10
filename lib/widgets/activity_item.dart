@@ -20,7 +20,7 @@ class ActivityItem extends StatefulWidget {
 
 class _ActivityItemState extends State<ActivityItem> {
   //Method adds icon as leading element to each element of the list.
-  //Image of an icon depends on category of element.
+  //Image of an icon depends on category of an element.
   addIcon() {
     Icon icon;
     switch (widget.activity.category.name) {
@@ -64,7 +64,7 @@ class _ActivityItemState extends State<ActivityItem> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        subtitle: Text(widget.activity.category.name),
+        subtitle: Text(widget.activity.date.toString()),
         trailing: IconButton(
           icon: const Icon(
             Icons.delete,
