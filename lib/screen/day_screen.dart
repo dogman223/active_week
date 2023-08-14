@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:active_week/model/day.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -10,9 +11,10 @@ import 'package:active_week/widgets/day_scaffold.dart';
 import '../list/days_list.dart';
 
 class DayScreen extends StatefulWidget {
-  DayScreen({super.key, required this.activities});
+  DayScreen({super.key, required this.activities, required this.day});
 
   List<Activity> activities;
+  final Day day;
 
   @override
   State<DayScreen> createState() => _DayScreenState();
@@ -45,8 +47,30 @@ class _DayScreenState extends State<DayScreen> {
     });
   }
 
+  setWeekday() {
+    String weekDayTitle;
+    switch (widget.day.weekday) {
+      case 0:
+        return weekDayTitle = 'Sunday';
+      case 1:
+        return weekDayTitle = 'Monday';
+      case 2:
+        return weekDayTitle = 'Tuesday';
+      case 3:
+        return weekDayTitle = 'Wednesday';
+      case 4:
+        return weekDayTitle = 'Thursday';
+      case 5:
+        return weekDayTitle = 'Friday';
+      case 6:
+        return weekDayTitle = 'Saturday';
+      case 7:
+        return weekDayTitle = 'Sunday';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DayScaffold(activities: widget.activities, dayTitle: 'Day');
+    return DayScaffold(activities: widget.activities, dayTitle: setWeekday());
   }
 }

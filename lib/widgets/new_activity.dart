@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 
 import '../list/days_list.dart';
 import '../model/activity.dart';
-import '../model/day.dart';
 
 //Class contains functionality of adding New Activity data
 class NewActivity extends StatefulWidget {

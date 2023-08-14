@@ -24,18 +24,6 @@ class _WeekScreenState extends State<WeekScreen> {
     return navigator;
   }
 
-  void _selectDateTime(BuildContext context) {
-    final today = DateTime.now();
-    int count = today.day;
-    for (count - 1; count < 32; count++) {
-      navigateDayScreen(
-          context,
-          DayScreen(
-            activities: [],
-          ));
-    }
-  }
-
   //Selecting day Function.
   //Switching navigation to screen of chosen day
   void _selectDay(BuildContext context, Day day) {
@@ -45,6 +33,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[0],
             ));
         break;
       case 'Today':
@@ -52,6 +41,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[1],
             ));
         break;
       case 'Tomorrow':
@@ -59,6 +49,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[2],
             ));
         break;
       case 'Day After tomorrow':
@@ -66,6 +57,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[3],
             ));
         break;
       case 'Second Day After tomorrow':
@@ -73,6 +65,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[4],
             ));
         break;
       case 'Third Day After tomorrow':
@@ -80,6 +73,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[5],
             ));
         break;
       case 'Fourth Day After tomorrow':
@@ -87,6 +81,7 @@ class _WeekScreenState extends State<WeekScreen> {
             context,
             DayScreen(
               activities: [],
+              day: days[6],
             ));
         break;
     }
