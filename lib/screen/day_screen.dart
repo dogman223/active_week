@@ -10,6 +10,7 @@ import 'package:active_week/widgets/day_scaffold.dart';
 
 import '../list/days_list.dart';
 
+//Screen with view of chosen day
 class DayScreen extends StatefulWidget {
   DayScreen({super.key, required this.activities, required this.day});
 
@@ -34,12 +35,12 @@ class _DayScreenState extends State<DayScreen> {
     final response = await http.get(url);
     final Map<String, dynamic> listData = json.decode(response.body);
     for (final item in listData.entries) {
-      final day = days.firstWhere((dayIt) => dayIt.title == item.value['day']);
+      final date =
+          dates.firstWhere((dateIt) => dateIt.isUtc == item.value['date']);
       final category = Category.values
           .firstWhere((catIt) => catIt.name == item.value['category']);
-      if (day == days[0]) {
-        widget.activities
-            .add(Activity(item.value['title'], category, day.value));
+      if (date == widget.day.value) {
+        widget.activities.add(Activity(item.value['title'], category, date));
       }
     }
     setState(() {
@@ -47,6 +48,7 @@ class _DayScreenState extends State<DayScreen> {
     });
   }
 
+  //Method sets title with name of day
   setWeekday() {
     String weekDayTitle;
     switch (widget.day.weekday) {
@@ -66,6 +68,8 @@ class _DayScreenState extends State<DayScreen> {
         return weekDayTitle = 'Saturday';
       case 7:
         return weekDayTitle = 'Sunday';
+      default:
+        return weekDayTitle = '';
     }
   }
 

@@ -39,6 +39,8 @@ class _DayItemState extends State<DayItem> {
         return weekDayTitle = 'Saturday';
       case 7:
         return weekDayTitle = 'Sunday';
+      default:
+        return weekDayTitle = '';
     }
   }
 
@@ -71,8 +73,11 @@ class _DayItemState extends State<DayItem> {
       ),
     );
 
-    var weekdayTitle = Text(setWeekday());
-    var date = Text(setDate());
+    var weekdayTitle = Text(
+      setWeekday(),
+      style: TextStyle(fontSize: 15),
+    );
+    var date = Center(child: Text(setDate()));
 
     return Card(
         elevation: 30,
