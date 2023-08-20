@@ -2,40 +2,33 @@ import '/model/day.dart';
 
 //Available days to select due to adding new activity
 var days = [
-  Day('Yesterday', yesterday, yesterdayWeekday),
-  Day('Today', today, todayWeekday),
-  Day('Tomorrow', tomorrow, tomorrowWeekday),
-  Day('Day After tomorrow', dayAftertomorrow, afterTomorrowWeekday),
-  Day('Second Day After tomorrow', secondDayAftertomorrow,
-      secondDayAfterTomorrowWeekday),
-  Day('Third Day After tomorrow', thirdDayAftertomorrow,
-      thirdDayAfterTomorrowWeekday),
-  Day('Fourth Day After tomorrow', fourthDayAftertomorrow,
-      fourthDayAfterTomorrowWeekday),
+  Day('Yesterday', yesterday, yesterday.weekday),
+  Day('Today', today, today.weekday),
+  Day('Tomorrow', tomorrow, tomorrow.weekday),
+  Day('Day After tomorrow', dayAfterTomorrow, dayAfterTomorrow.weekday),
+  Day('Second Day After tomorrow', secondDayAfterTomorrow,
+      secondDayAfterTomorrow.weekday),
+  Day('Third Day After tomorrow', thirdDayAfterTomorrow,
+      thirdDayAfterTomorrow.weekday),
+  Day('Fourth Day After tomorrow', fourthDayAfterTomorrow,
+      fourthDayAfterTomorrow.weekday),
 ];
 
 var dates = [
   yesterday,
   today,
   tomorrow,
-  dayAftertomorrow,
-  secondDayAftertomorrow,
-  thirdDayAftertomorrow,
-  fourthDayAftertomorrow
+  dayAfterTomorrow,
+  secondDayAfterTomorrow,
+  thirdDayAfterTomorrow,
+  fourthDayAfterTomorrow
 ];
 
+//Dates of each available days saved in variables
 final yesterday = DateTime(today.year, today.month, today.day - 1);
 final today = DateTime.now();
 final tomorrow = DateTime(today.year, today.month, today.day + 1);
-final dayAftertomorrow = DateTime(today.year, today.month, today.day + 2);
-final secondDayAftertomorrow = DateTime(today.year, today.month, today.day + 3);
-final thirdDayAftertomorrow = DateTime(today.year, today.month, today.day + 4);
-final fourthDayAftertomorrow = DateTime(today.year, today.month, today.day + 5);
-
-final yesterdayWeekday = today.weekday - 1;
-final todayWeekday = today.weekday;
-final tomorrowWeekday = today.weekday + 1;
-final afterTomorrowWeekday = today.weekday + 2;
-final secondDayAfterTomorrowWeekday = today.weekday + 3;
-final thirdDayAfterTomorrowWeekday = today.weekday + 4;
-final fourthDayAfterTomorrowWeekday = today.weekday + 5;
+final dayAfterTomorrow = DateTime(today.year, today.month, today.day + 2);
+final secondDayAfterTomorrow = DateTime(today.year, today.month, today.day + 3);
+final thirdDayAfterTomorrow = DateTime(today.year, today.month, today.day + 4);
+final fourthDayAfterTomorrow = DateTime(today.year, today.month, today.day + 5);
