@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-import '../list/days_list.dart';
 import '../model/activity.dart';
 
 //Class contains functionality of adding New Activity data
@@ -31,8 +30,9 @@ class _NewActivityState extends State<NewActivity> {
     final pickedDate = await showDatePicker(
         context: context, initialDate: now, firstDate: now, lastDate: lastDate);
 
+    print(pickedDate);
     setState(() {
-      pickedDate == _selectedDate;
+      _selectedDate = pickedDate;
     });
   }
 
@@ -48,12 +48,8 @@ class _NewActivityState extends State<NewActivity> {
         body: json.encode({
           'title': _titleController.text,
           'category': _selectedCategory.name,
-          'date': _selectedDate,
+          'date': _selectedDate!,
         }));
-
-    setState(() {
-      dates.add(_selectedDate!);
-    });
 
     if (!context.mounted) {
       return;
