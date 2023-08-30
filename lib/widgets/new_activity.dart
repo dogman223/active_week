@@ -48,7 +48,7 @@ class _NewActivityState extends State<NewActivity> {
         body: json.encode({
           'title': _titleController.text,
           'category': _selectedCategory.name,
-          'date': _selectedDate!,
+          'date': formatter.format(_selectedDate!),
         }));
 
     if (!context.mounted) {
