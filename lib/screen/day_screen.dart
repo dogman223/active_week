@@ -35,11 +35,11 @@ class _DayScreenState extends State<DayScreen> {
     final response = await http.get(url);
     final Map<String, dynamic> listData = json.decode(response.body);
     for (final item in listData.entries) {
-      final date =
-          dates.firstWhere((dateIt) => dateIt.isUtc == item.value['date']);
+      final date = dates.firstWhere(
+          (dateIt) => formatter.format(dateIt) == item.value['date']);
       final category = Category.values
           .firstWhere((catIt) => catIt.name == item.value['category']);
-      if (date == widget.day.value) {
+      if (date.day == widget.day.value.day) {
         widget.activities.add(Activity(item.value['title'], category, date));
       }
     }
