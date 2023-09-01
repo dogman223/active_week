@@ -48,33 +48,21 @@ class _DayScreenState extends State<DayScreen> {
     });
   }
 
-  //Method sets title with name of day
-  setWeekday() {
-    String weekDayTitle;
-    switch (widget.day.weekday) {
-      case 0:
-        return weekDayTitle = 'Sunday';
-      case 1:
-        return weekDayTitle = 'Monday';
-      case 2:
-        return weekDayTitle = 'Tuesday';
-      case 3:
-        return weekDayTitle = 'Wednesday';
-      case 4:
-        return weekDayTitle = 'Thursday';
-      case 5:
-        return weekDayTitle = 'Friday';
-      case 6:
-        return weekDayTitle = 'Saturday';
-      case 7:
-        return weekDayTitle = 'Sunday';
-      default:
-        return weekDayTitle = '';
+  //Method sets title on day screen
+  setTitle() {
+    String dayTitle;
+    switch (widget.day.title) {
+      case 'Yesterday':
+        return dayTitle = widget.day.title;
+      case 'Today':
+        return dayTitle = widget.day.title;
+      case 'Tomorrow':
+        return dayTitle = widget.day.title;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return DayScaffold(activities: widget.activities, dayTitle: setWeekday());
+    return DayScaffold(activities: widget.activities, dayTitle: setTitle());
   }
 }
