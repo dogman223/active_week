@@ -2,9 +2,8 @@ import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 
 const uuid = Uuid();
-final formatter = DateFormat.yMd();
-
-///final formatter = DateFormat
+//Globally used formatted date object
+var formatter = DateFormat('dd-MMM-y');
 
 enum Category {
   sport,
@@ -27,6 +26,11 @@ class Activity {
   final Category category;
   final String id;
   final DateTime date;
+
+  //Getter for globally using date format
+  String get formattedDate {
+    return formatter.format(date);
+  }
 
   Activity(this.title, this.category, this.date) : id = uuid.v4();
 }

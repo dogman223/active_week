@@ -1,6 +1,8 @@
+import 'package:active_week/model/activity.dart';
 import 'package:flutter/material.dart';
 
 import '../list/days_list.dart';
+
 import '../model/day.dart';
 
 //Grid of day. Apearance of each section of day on week_screen.
@@ -46,14 +48,17 @@ class _DayItemState extends State<DayItem> {
 
   //Method sets subtitle with date on item of day
   setDate() {
-    String date;
+    var date;
     switch (widget.day.title) {
       case 'Yesterday':
-        return date = widget.day.value.toString();
+        date = widget.day.value;
+        return formatter.format(date);
       case 'Today':
-        return date = widget.day.value.toString();
+        date = widget.day.value;
+        return formatter.format(date);
       case 'Tomorrow':
-        return date = widget.day.value.toString();
+        date = widget.day.value;
+        return formatter.format(date);
       default:
         return date = '';
     }
@@ -61,11 +66,13 @@ class _DayItemState extends State<DayItem> {
 
   //Widget builds column with day.
   Widget buildDayTitle(BuildContext context, Day day) {
+    var dateTitle = widget.day.value;
+
     var dayTitle = Center(
       child: Text(
         days.indexOf(widget.day) < 3
             ? widget.day.title
-            : widget.day.value.toString(),
+            : formatter.format(dateTitle),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 18,
@@ -75,7 +82,9 @@ class _DayItemState extends State<DayItem> {
 
     var weekdayTitle = Text(
       setWeekday(),
-      style: TextStyle(fontSize: 15),
+      style: const TextStyle(
+        fontSize: 15,
+      ),
     );
     var date = Center(child: Text(setDate()));
 
