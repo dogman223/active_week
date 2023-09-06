@@ -9,7 +9,7 @@ class DayScaffold extends StatefulWidget {
   DayScaffold({super.key, required this.activities, required this.dayTitle});
 
   List<Activity> activities;
-  String dayTitle;
+  var dayTitle;
 
   @override
   State<DayScaffold> createState() => _DayScaffoldState();

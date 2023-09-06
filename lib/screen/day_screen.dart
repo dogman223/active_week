@@ -48,21 +48,19 @@ class _DayScreenState extends State<DayScreen> {
     });
   }
 
-  //Method sets title on day screen
+  //Method sets title/date on day screen.
   setTitle() {
-    String dayTitle;
-    var dateTitle;
+    var dayTitle = widget.day.title;
+    var dateTitle = widget.day.value;
     switch (widget.day.title) {
       case 'Yesterday':
-        return dayTitle = widget.day.title;
+        return dayTitle;
       case 'Today':
-        return dayTitle = widget.day.title;
+        return dayTitle;
       case 'Tomorrow':
-        return dayTitle = widget.day.title;
+        return dayTitle;
       default:
-        dateTitle = widget.day.value;
-        formatter.format(dateTitle);
-        return dateTitle.toString();
+        return formatter.format(dateTitle);
     }
   }
 
