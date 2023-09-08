@@ -8,11 +8,9 @@ class ActivityItem extends StatefulWidget {
   const ActivityItem({
     super.key,
     required this.activity,
-    required this.deleteActivity,
   });
 
   final Activity activity;
-  final Function deleteActivity;
 
   @override
   State<ActivityItem> createState() => _ActivityItemState();
@@ -57,21 +55,15 @@ class _ActivityItemState extends State<ActivityItem> {
   Widget build(BuildContext context) {
     var date = widget.activity.date;
     return ListTile(
-        leading: addIcon(),
-        title: Card(
-          elevation: 5,
-          child: Text(
-            widget.activity.title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+      leading: addIcon(),
+      title: Card(
+        elevation: 5,
+        child: Text(
+          widget.activity.title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(formatter.format(date)),
-        trailing: IconButton(
-          icon: const Icon(
-            Icons.delete,
-            color: Colors.redAccent,
-          ),
-          onPressed: () => widget.deleteActivity(widget.activity),
-        ));
+      ),
+      subtitle: Text(formatter.format(date)),
+    );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:http/http.dart' as http;
+
 import 'list_content.dart';
 import 'new_activity.dart';
-import 'package:active_week/model/activity.dart';
+import '/model/activity.dart';
 
 //Scaffold, and function of adding new data, for each day screen.
 class DayScaffold extends StatefulWidget {
@@ -30,7 +32,18 @@ class _DayScaffoldState extends State<DayScaffold> {
     });
   }
 
-  //General Scaffold configuration for each day.
+  //Method deletes activity from activities list
+  void _deleteActivity(Activity activity) {
+    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
+        'activities-list/${activity.id}.json');
+    http.delete(url);
+
+    setState(() {
+      widget.activities.remove(activity);
+    });
+  }
+
+  //General Scaffold configuration for each day_screen.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +54,7 @@ class _DayScaffoldState extends State<DayScaffold> {
       ),
       body: ListContent(
         activities: widget.activities,
+        deleteActivity: _deleteActivity,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
