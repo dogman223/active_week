@@ -55,6 +55,7 @@ class _ActivityItemState extends State<ActivityItem> {
 
   @override
   Widget build(BuildContext context) {
+    var date = widget.activity.date;
     return ListTile(
         leading: addIcon(),
         title: Card(
@@ -64,7 +65,7 @@ class _ActivityItemState extends State<ActivityItem> {
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        subtitle: Text(widget.activity.date.toString()),
+        subtitle: Text(formatter.format(date)),
         trailing: IconButton(
           icon: const Icon(
             Icons.delete,
