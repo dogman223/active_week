@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:active_week/model/activity.dart';
-import 'package:active_week/list/icons_list.dart';
+import '/model/activity.dart';
+import '/list/icons_list.dart';
 
 //Appearance of activity element in list
 class ActivityItem extends StatefulWidget {
-  const ActivityItem({
-    super.key,
-    required this.activity,
-  });
+  const ActivityItem(
+      {super.key, required this.activity, required this.deleteActivity});
 
   final Activity activity;
+  final Function deleteActivity;
 
   @override
   State<ActivityItem> createState() => _ActivityItemState();
@@ -53,17 +52,22 @@ class _ActivityItemState extends State<ActivityItem> {
 
   @override
   Widget build(BuildContext context) {
-    var date = widget.activity.date;
     return ListTile(
-      leading: addIcon(),
-      title: Card(
-        elevation: 5,
-        child: Text(
-          widget.activity.title,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        leading: addIcon(),
+        title: Card(
+          elevation: 5,
+          child: Text(
+            widget.activity.title,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-      ),
-      subtitle: Text(formatter.format(date)),
-    );
+        subtitle: Text(widget.activity.formattedDate),
+        trailing: IconButton(
+          icon: const Icon(
+            Icons.delete,
+            color: Colors.redAccent,
+          ),
+          onPressed: () => widget.deleteActivity(widget.activity),
+        ));
   }
 }

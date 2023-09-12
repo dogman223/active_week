@@ -39,19 +39,20 @@ class _DayScreenState extends State<DayScreen> {
           (dateIt) => formatter.format(dateIt) == item.value['date']);
       final category = Category.values
           .firstWhere((catIt) => catIt.name == item.value['category']);
-      if (date.day == widget.day.value.day) {
+      if (date == widget.day.date) {
         widget.activities.add(Activity(item.value['title'], category, date));
       }
+
+      setState(() {
+        widget.activities;
+      });
     }
-    setState(() {
-      widget.activities;
-    });
   }
 
-  //Method sets title/date on day screen.
+  //Method sets title/date on day_screen.
   setTitle() {
     var dayTitle = widget.day.title;
-    var dateTitle = widget.day.value;
+    var dateTitle = widget.day.formattedDate;
     switch (widget.day.title) {
       case 'Yesterday':
         return dayTitle;
@@ -60,7 +61,7 @@ class _DayScreenState extends State<DayScreen> {
       case 'Tomorrow':
         return dayTitle;
       default:
-        return formatter.format(dateTitle);
+        return dateTitle;
     }
   }
 

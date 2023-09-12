@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http;
-
 import 'list_content.dart';
 import 'new_activity.dart';
 import '/model/activity.dart';
@@ -32,17 +30,6 @@ class _DayScaffoldState extends State<DayScaffold> {
     });
   }
 
-  //Method deletes activity from activities list
-  void _deleteActivity(Activity activity) {
-    final url = Uri.https('active-week-1cfe4-default-rtdb.firebaseio.com',
-        'activities-list/${activity.id}.json');
-    http.delete(url);
-
-    setState(() {
-      widget.activities.remove(activity);
-    });
-  }
-
   //General Scaffold configuration for each day_screen.
   @override
   Widget build(BuildContext context) {
@@ -54,7 +41,6 @@ class _DayScaffoldState extends State<DayScaffold> {
       ),
       body: ListContent(
         activities: widget.activities,
-        deleteActivity: _deleteActivity,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(

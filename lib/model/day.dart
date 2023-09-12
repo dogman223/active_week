@@ -1,7 +1,14 @@
+import 'activity.dart';
+
 class Day {
   String title;
-  DateTime value;
+  DateTime date;
   int weekday;
 
-  Day(this.title, this.value, this.weekday);
+  //Getter for globally using date format
+  String get formattedDate {
+    return formatter.format(date);
+  }
+
+  Day(this.title, this.date, this.weekday);
 }

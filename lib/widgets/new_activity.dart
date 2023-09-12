@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:active_week/list/icons_list.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-import '../model/activity.dart';
+import '/model/activity.dart';
+import '/list/icons_list.dart';
 
 //Class contains functionality of adding New Activity data
 class NewActivity extends StatefulWidget {

@@ -1,8 +1,9 @@
-import 'package:active_week/screen/week_screen.dart';
-import 'package:active_week/widgets/start_week_item.dart';
 import 'package:flutter/material.dart';
 
-//Main menu
+import 'package:active_week/screen/week_screen.dart';
+import 'package:active_week/widgets/start_week_item.dart';
+
+//Main menu screen
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
