@@ -1,20 +1,19 @@
 import 'dart:convert';
 
-import 'package:active_week/model/day.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
 import 'package:active_week/model/activity.dart';
 import 'package:active_week/widgets/day_scaffold.dart';
-
+import 'package:active_week/model/day.dart';
 import '../list/days_list.dart';
 
 //Screen with view of chosen day
 class DayScreen extends StatefulWidget {
   DayScreen({super.key, required this.activities, required this.day});
 
-  List<Activity> activities;
+  final List<Activity> activities;
   final Day day;
 
   @override
@@ -51,8 +50,8 @@ class _DayScreenState extends State<DayScreen> {
 
   //Method sets title/date on day_screen.
   setTitle() {
-    var dayTitle = widget.day.title;
-    var dateTitle = widget.day.formattedDate;
+    final dayTitle = widget.day.title;
+    final dateTitle = widget.day.formattedDate;
     switch (widget.day.title) {
       case 'Yesterday':
         return dayTitle;

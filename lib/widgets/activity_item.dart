@@ -5,11 +5,11 @@ import '/list/icons_list.dart';
 
 //Appearance of activity element in list
 class ActivityItem extends StatefulWidget {
-  const ActivityItem(
+  ActivityItem(
       {super.key, required this.activity, required this.deleteActivity});
 
   final Activity activity;
-  final Function deleteActivity;
+  final Function(Activity activity) deleteActivity;
 
   @override
   State<ActivityItem> createState() => _ActivityItemState();

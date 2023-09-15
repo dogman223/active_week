@@ -1,11 +1,9 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
-import 'package:active_week/screen/day_screen.dart';
 import 'package:flutter/material.dart';
 
 import '/list/days_list.dart';
 import '/model/day.dart';
-import '../widgets/day_item.dart';
+import '/widgets/day_item.dart';
+import '/screen/day_screen.dart';
 
 //Visible main menu with view of days in week
 class WeekScreen extends StatefulWidget {
@@ -17,8 +15,8 @@ class WeekScreen extends StatefulWidget {
 
 class _WeekScreenState extends State<WeekScreen> {
   //Future navigates to screen of day
-  Future navigateDayScreen(BuildContext context, Widget buildDayScreen) {
-    var navigator = Navigator.of(context).push(MaterialPageRoute(
+  Future _navigateDayScreen(BuildContext context, Widget buildDayScreen) {
+    final navigator = Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => buildDayScreen,
     ));
     return navigator;
@@ -29,7 +27,7 @@ class _WeekScreenState extends State<WeekScreen> {
   void _selectDay(BuildContext context, Day day) {
     switch (day.title) {
       case 'Yesterday':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -37,7 +35,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Today':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -45,7 +43,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Tomorrow':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -53,7 +51,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Day After tomorrow':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -61,7 +59,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Second Day After tomorrow':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -69,7 +67,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Third Day After tomorrow':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],
@@ -77,7 +75,7 @@ class _WeekScreenState extends State<WeekScreen> {
             ));
         break;
       case 'Fourth Day After tomorrow':
-        navigateDayScreen(
+        _navigateDayScreen(
             context,
             DayScreen(
               activities: [],

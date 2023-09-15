@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../list/days_list.dart';
-
-import '../model/day.dart';
+import '/list/days_list.dart';
+import '/model/day.dart';
 
 //Grid of day. Apearance of each section of day on week_screen.
 class DayItem extends StatefulWidget {
@@ -22,7 +21,7 @@ class DayItem extends StatefulWidget {
 class _DayItemState extends State<DayItem> {
   //Method sets subtitle with name of day on item of day
   setWeekday() {
-    String weekDayTitle;
+    final String weekDayTitle;
     switch (widget.day.weekday) {
       case 0:
         return weekDayTitle = 'Sunday';
@@ -60,10 +59,11 @@ class _DayItemState extends State<DayItem> {
     }
   }
 
-  //Widget builds column with day.
+  //Widget builds column with day and title/date of it.
   Widget buildDayTitle(BuildContext context, Day day) {
     var dateTitle = widget.day.formattedDate;
 
+    //If day is furtherer than tomorrow, title of the day is only date and weekday (No today, tomorrow etc.):
     var dayTitle = Center(
       child: Text(
         days.indexOf(widget.day) < 3 ? widget.day.title : dateTitle,

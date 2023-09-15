@@ -8,8 +8,8 @@ import '/model/activity.dart';
 class DayScaffold extends StatefulWidget {
   DayScaffold({super.key, required this.activities, required this.dayTitle});
 
-  List<Activity> activities;
-  var dayTitle;
+  final List<Activity> activities;
+  final dayTitle;
 
   @override
   State<DayScaffold> createState() => _DayScaffoldState();

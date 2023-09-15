@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-import '../model/activity.dart';
+import '/model/activity.dart';
 import 'activity_item.dart';
 
 //Widget builds list of activities if not empty
 class ListContent extends StatefulWidget {
   ListContent({super.key, required this.activities});
 
-  List<Activity> activities;
+  final List<Activity> activities;
 
   @override
   State<ListContent> createState() => _ListContentState();
